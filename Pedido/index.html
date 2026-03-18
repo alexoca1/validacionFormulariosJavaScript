@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Pedido</h1>
+    <form action="procesar.php" onsubmit="return validaFormulario()">
+        <label for="producto">Producto</label>
+        <select name="producto" id="producto" onchange="elegirImagen()">
+            <option value="Elija producto" selected>Elija producto</option>
+            <option value="ordenador">Ordenador</option>
+            <option value="portatil">Portatil</option>
+            <option value="tablet">Tablet</option>
+        </select>
+        <br>
+        <p>
+            <img width="200px" height="200px" src="images/elejir.jpg" alt="" id="imgProducto">
+        </p>
+        
+        <label for="usuario">usuario</label>
+        <input type="text" id="usuario"><br>
+        <label for="condiciones">He leido y acepto las condiciones</label>
+        <input type="checkbox" id="condiciones"><br>
+        <input type="submit" value="enviar" id="enviar">
+    </form>
+
+
+    <script>
+function elegirImagen(){
+    
+    let imagen = document.getElementById("imgProducto");
+    let producto=document.getElementById("producto");
+  
+    if(producto.value=="ordenador"){
+        imagen.src="images/ordenador.jpg";
+         
+    }
+    else if(producto.value=="portatil"){
+        imagen.src="images/portatil.jpg";
+         
+
+    } else if(producto.value=="tablet"){
+        imagen.src="images/tablet.jpg";
+        
+
+    } else{
+        imagen.src="images/elejir.jpg";
+        
+           
+    }
+}
+
+        function validaFormulario(){
+            
+            let producto=document.getElementById("producto");
+            let usuario=document.getElementById("usuario");
+            let condiciones =document.getElementById("condiciones");
+            
+            if(producto.value=="Elija producto"){
+                alert("Debes elegir un producto");
+                return false;
+            }
+
+            if(usuario.value.length==0){
+                alert("Debes escribir un usuario");
+                return false;
+            }
+
+            if(condiciones.checked==false){
+                alert("Debes aceptar las condiciones");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

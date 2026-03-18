@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de préstamos</title>
+</head>
+
+<body>
+
+    <h1>Solicitud de préstamos</h1>
+
+    <form action="proecesar.php" onsubmit="return validarPrestamo()">
+
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre">
+        </p>
+        <p>
+            <label for="importe">Importe a solicitar en euros</label>
+            <input type="number" id="importe">
+        </p>
+        <p>
+            <label for="edad">Edad</label>
+            <input type="number" id="edad">
+        </p>
+        <p>Situación Laboral</p>
+        <label for="activo">Activo</label>
+        <input type="radio" name="laboral" value="activo">
+        <label for="desempleado">Desempleado</label>
+        <input type="radio" name="laboral" value="desempleado">
+        <label for="jubilado">Jubilado</label>
+        <input type="radio" name="laboral" value="jubilado">
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+
+    </form>
+
+    <p>
+        Haz un formulario ( 1pto ) de Solicitud de préstamos donde se introduzca el nombre,
+        el importe a solicitar, la edad y una lista desplegable “Situación laboral”
+        con la opciones: Elija una, en activo, desempleado, jubilado.
+    </p>
+    <p>
+        Antes de enviar los datos el formulario debe validar que se ha introducido
+        un nombre, que se ha introducido un importe mayor a 10.000 euros ( 2ptos ) ,
+        que la edad es menor de 65 años ( 2ptos ) y que se ha elegido un
+        situación laboral.(2ptos )
+    </p>
+    <p>
+        ( 2 ptos )Los mensajes de error no los muestra en una ventana emergente sino
+        que los pone como contenido de un h3 que se coloca justo a continuación del
+        formulario.
+    </p>
+    <p>
+        (1 pto) Además si un input da error el foco se coloca en ese input
+    </p>
+    <script>
+        function validarPrestamo() {
+            let usuario=document.getElementById("nombre").value;
+            let importe=parseInt(document.getElementById("importe").value);
+            let edad = parseInt(document.getElementById("edad").value);
+            let laboral=document.getElementsByName("laboral");
+
+            if(usuario.length==0){
+                alert("Deebes ingresar un nombre");
+                return false;
+            }
+            if(importe<=10000){
+                alert("El importe debe ser mayor a 10.000 euros");
+                return false;
+            }
+            if(edad>=65){
+                alert("Los prestamos solo son para personas menores de 65 años");
+                return false;
+            }
+            for(let i=0;i<laboral.length;i++){
+                
+                if(laboral[i].checked==true){
+                    return true;
+                }
+            }
+            alert("Debes seleccionar una actividad laboral");
+            return false;
+        }
+    </script>
+</body>
+
+</html>
