@@ -60,15 +60,21 @@
     <script>
         function validarPrestamo() {
             let usuario=document.getElementById("nombre").value;
-            let importe=parseInt(document.getElementById("importe").value);
+            let importe=document.getElementById("importe").value;
+            let valorImporte=parseInt(document.getElementById("importe").value);
             let edad = parseInt(document.getElementById("edad").value);
             let laboral=document.getElementsByName("laboral");
-
+           
             if(usuario.length==0){
                 alert("Deebes ingresar un nombre");
                 return false;
             }
-            if(importe<=10000){
+             if(importe.length=="" ){
+                alert("Debes poner un importe");
+                return false;
+            }
+
+            if(valorImporte<=10000 ){
                 alert("El importe debe ser mayor a 10.000 euros");
                 return false;
             }
