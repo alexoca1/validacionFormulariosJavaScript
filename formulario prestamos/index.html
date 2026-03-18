@@ -23,7 +23,7 @@
         </p>
         <p>
             <label for="edad">Edad</label>
-            <input type="number" id="edad" >
+            <input type="number" id="edad">
         </p>
         <p>Situación Laboral</p>
         <label for="activo">Activo</label>
@@ -38,70 +38,52 @@
 
     </form>
     <h3 style="color: red;" id="mensaje"></h3>
-    <p>
-        Haz un formulario ( 1pto ) de Solicitud de préstamos donde se introduzca el nombre,
-        el importe a solicitar, la edad y una lista desplegable “Situación laboral”
-        con la opciones: Elija una, en activo, desempleado, jubilado.
-    </p>
-    <p>
-        Antes de enviar los datos el formulario debe validar que se ha introducido
-        un nombre, que se ha introducido un importe mayor a 10.000 euros ( 2ptos ) ,
-        que la edad es menor de 65 años ( 2ptos ) y que se ha elegido un
-        situación laboral.(2ptos )
-    </p>
-    <p>
-        ( 2 ptos )Los mensajes de error no los muestra en una ventana emergente sino
-        que los pone como contenido de un h3 que se coloca justo a continuación del
-        formulario.
-    </p>
-    <p>
-        (1 pto) Además si un input da error el foco se coloca en ese input
-    </p>
+
     <script>
         function validarPrestamo() {
-            let usuario=document.getElementById("nombre");
-            let importe=document.getElementById("importe");
-            let valorImporte=parseInt(document.getElementById("importe").value);
-            let valorEdad =parseInt(document.getElementById("edad").value);
+            let usuario = document.getElementById("nombre");
+            let importe = document.getElementById("importe");
+            let valorImporte = parseInt(document.getElementById("importe").value);
+            let valorEdad = parseInt(document.getElementById("edad").value);
             let Edad = document.getElementById("edad");
-            let laboral=document.getElementsByName("laboral");
-           
-            if(usuario.value.length==0){
-                document.getElementById("mensaje").innerHTML="Debes ingresar un nombre";
-                
+            let laboral = document.getElementsByName("laboral");
+
+            if (usuario.value.length == 0) {
+                document.getElementById("mensaje").innerHTML = "Debes ingresar un nombre";
+
                 usuario.focus();
                 return false;
             }
-             if(importe.value.length=="" ){
-                document.getElementById("mensaje").innerHTML="Debes poner un importe";
+            if (importe.value.length == "") {
+                document.getElementById("mensaje").innerHTML = "Debes poner un importe";
                 importe.focus();
                 return false;
             }
 
-            if(valorImporte<=10000 ){
-                document.getElementById("mensaje").innerHTML="El importe debe ser mayor a 10.000 euros";
+            if (valorImporte <= 10000) {
+                document.getElementById("mensaje").innerHTML = "El importe debe ser mayor a 10.000 euros";
                 importe.focus();
                 return false;
             }
-              if(edad.value.length=="" ){
-                document.getElementById("mensaje").innerHTML="Debes poner tu edad";
+            if (edad.value.length == "") {
+                document.getElementById("mensaje").innerHTML = "Debes poner tu edad";
                 edad.focus();
                 return false;
             }
 
-           
-            if(valorEdad>65 || valorEdad<18){               
-                alert("Los prestamos solo son para personas menores de 65 años y mayores de 18 años");
+
+            if (valorEdad >= 65 || valorEdad < 18) {
+                document.getElementById("mensaje").innerHTML = "Los prestamos solo son para personas menores de 65 años y mayores de 18 años";
                 edad.focus();
                 return false;
             }
-            for(let i=0;i<laboral.length;i++){
-                
-                if(laboral[i].checked==true){
+            for (let i = 0; i < laboral.length; i++) {
+
+                if (laboral[i].checked == true) {
                     return true;
                 }
-            }            
-            alert("Debes seleccionar una actividad laboral");
+            }
+            document.getElementById("mensaje").innerHTML = "Debes seleccionar una actividad laboral";
             document.getElementById("activo").focus();
             return false;
         }
